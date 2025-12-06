@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataScience Exam Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+        .glass-card-hover {
+            transition: all 0.3s ease;
+        }
+        .glass-card-hover:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px 0 rgba(34, 197, 94, 0.2);
+        }
+        .question-item {
+            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .question-item:hover {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: rgba(34, 197, 94, 0.3);
+            transform: translateX(4px);
+        }
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body class="bg-black min-h-screen p-4 md:p-8">
+    <div class="max-w-5xl mx-auto">
+        <!-- Header -->
+        <div class="glass-card rounded-2xl p-8 mb-6">
+            <div class="flex items-center gap-6 mb-6 flex-wrap">
+                <div class="bg-green-600 p-4 rounded-xl shadow-xl">
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                </div>
+                <div class="flex-1">
+                    <h1 class="text-4xl font-bold text-white mb-2">
+                        Data<span class="text-green-500">Science</span> Exam Tracker
+                    </h1>
+                    <p class="text-gray-400 text-lg">Track your preparation progress chapter-wise</p>
+                </div>
+                <div class="glass-card px-8 py-4 rounded-xl border-2 border-green-500/30">
+                    <svg class="w-8 h-8 text-green-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                    </svg>
+                    <div id="totalPercentage" class="text-3xl font-bold text-green-500">0%</div>
+                    <div id="totalCount" class="text-sm text-gray-300 mt-1">0/45</div>
+                </div>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="bg-gray-900 rounded-full h-4 overflow-hidden border border-gray-800">
+                <div id="mainProgressBar" class="progress-bar bg-green-600 h-full flex items-center justify-end pr-3" style="width: 0%">
+                    <span id="mainProgressText" class="text-xs font-bold text-white hidden"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Units Container -->
+        <div id="unitsContainer" class="space-y-5"></div>
+    </div>
+
+    <script>
+        const units = {
+            'Unit 1': [
+                'What is data science? What is Python? List and explain features of python.',
+                'Explain the role of data types in Python programming. Illustrate your answer with examples of the list data type. Additionally, describe various methods used to add and remove elements from a list in Python.',
+                'What is a string in Python? Describe various string operations such as slicing, concatenation, and repetition with examples.',
+                'Write difference between list and tuple.',
+                'Define a tuple in Python. Provide examples to illustrate tuple creation and access. Also, explain the concept of immutability in tuples and its implications in Python programming.',
+                'Write a program that accepts a student\'s marks and prints: "Pass" if marks ≥ 40, "Fail" otherwise',
+                'Write a Python program to find the union, intersection, and difference of two sets.',
+                'What is the difference between: discard() and remove() in sets, clear() and del with sets',
+                'What is a dictionary in Python? Explain its key features and how it differs from other data types like lists and tuples. Provide examples to demonstrate dictionary creation, accessing values, updating entries, and deleting key-value pairs.',
+                'Write a Python program to count the frequency of characters in a string using a dictionary.',
+                'What is a function in Python? Explain the purpose and advantages of using functions in programming. Provide examples to demonstrate how to define and call a function, including the use of parameters and return values.',
+                'What are classes and objects in Python? Explain the concept of object-oriented programming with reference to classes and objects. Provide examples to demonstrate how to define a class, create objects, and access attributes and methods.'
+            ],
+            'Unit 2': [
+                'List & explain Core com Core Competencies(skill) of a Data Scientist.',
+                'How data science, big data, and AI are interrelated in modern technology ecosystems?',
+                'Explain data science pipeline.',
+                'Methods in Python.',
+                'What are Attribute Access Methods in Python? Explain their purpose with examples.',
+                'What is kernel? Types of kernel. Why is restarting a kernel sometimes necessary?',
+                'How do you load a built-in dataset in Seaborn? Give example.'
+            ],
+            'Unit 3': [
+                'Difference between python & Ipython',
+                'What are magic functions in IPython? Illustrate their use with examples.',
+                'Write program on use of arithmetic operators and their magic functions.',
+                'What is IPython? List and explain the main features of IPython in detail.',
+                'Write short note on: Magic command in IPython, jupyter notebook, Restoring A Checkpoint',
+                'What are magic methods in Python? How do they relate to operator overloading?',
+                'Explain how comparison operators are implemented using magic'
+            ],
+            'Unit 4': [
+                'What is data visualization? Explain its importance in data analysis.',
+                'Write difference between bar chart, line chart and pie chart?',
+                'Write a Python program to draw a line chart that displays monthly sales data. Explain each step in detail.',
+                'What are the key factors to consider when selecting a graph for data visualization?',
+                'Write a Python program to create a pie chart showing sales distribution among different products. Explain each step.',
+                'Explain pie chart.',
+                'Short note on: histogram, boxplot, directed graph, undirected graph',
+                'Explain scatter plot with program.',
+                'Explain timeplot in detail.'
+            ],
+            'Unit 5': [
+                'What is data wrangling? Explain data wrangling process in detail.',
+                'Explain role of hashing in data wrangling.',
+                'What is benchmarking? Explain in detail.',
+                'Demonstrate hashing trick with program.'
+            ],
+            'Unit 6': [
+                'Explain the different measures of central tendency — mean, median, and mode — in detail. Describe how each measure is calculated, state their advantages and disadvantages, and illustrate your answer with a suitable example.',
+                'What is Exploratory Data Analysis? Explain its types and steps to perform it in detail.',
+                'What is a Contingency Table? Explain in detail.'
+            ]
+        };
+
+        let completedQuestions = {};
+        let expandedUnits = { 'Unit 1': true };
+
+        function loadProgress() {
+            const saved = localStorage.getItem('dsTrackerProgress');
+            if (saved) {
+                completedQuestions = JSON.parse(saved);
+            }
+        }
+
+        function saveProgress() {
+            localStorage.setItem('dsTrackerProgress', JSON.stringify(completedQuestions));
+        }
+
+        function getUnitProgress(unit) {
+            const total = units[unit].length;
+            const completed = units[unit].filter((_, i) => completedQuestions[`${unit}-${i}`]).length;
+            const percentage = Math.round((completed / total) * 100);
+            return { completed, total, percentage };
+        }
+
+        function getTotalProgress() {
+            const allQuestions = Object.values(units).flat().length;
+            const completed = Object.values(completedQuestions).filter(Boolean).length;
+            const percentage = Math.round((completed / allQuestions) * 100);
+            return { completed, total: allQuestions, percentage };
+        }
+
+        function updateMainProgress() {
+            const progress = getTotalProgress();
+            document.getElementById('totalPercentage').textContent = progress.percentage + '%';
+            document.getElementById('totalCount').textContent = `${progress.completed}/${progress.total}`;
+            document.getElementById('mainProgressBar').style.width = progress.percentage + '%';
+            const progressText = document.getElementById('mainProgressText');
+            if (progress.percentage > 10) {
+                progressText.textContent = progress.percentage + '%';
+                progressText.classList.remove('hidden');
+            } else {
+                progressText.classList.add('hidden');
+            }
+        }
+
+        function toggleQuestion(unit, index) {
+            const key = `${unit}-${index}`;
+            completedQuestions[key] = !completedQuestions[key];
+            saveProgress();
+            renderUnits();
+            updateMainProgress();
+        }
+
+        function toggleUnit(unit) {
+            expandedUnits[unit] = !expandedUnits[unit];
+            renderUnits();
+        }
+
+        function renderUnits() {
+            const container = document.getElementById('unitsContainer');
+            container.innerHTML = '';
+
+            Object.entries(units).forEach(([unit, questions]) => {
+                const progress = getUnitProgress(unit);
+                const isExpanded = expandedUnits[unit];
+
+                const unitCard = document.createElement('div');
+                unitCard.className = 'glass-card glass-card-hover rounded-2xl overflow-hidden';
+
+                unitCard.innerHTML = `
+                    <div class="p-6 cursor-pointer" onclick="toggleUnit('${unit}')">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-4">
+                                <div class="bg-green-600 p-3 rounded-xl">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h2 class="text-2xl font-bold text-white">${unit}</h2>
+                                    <p class="text-sm text-gray-400 mt-1">${questions.length} questions</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-green-500">${progress.percentage}%</div>
+                                    <div class="text-xs text-gray-400 mt-1">${progress.completed}/${progress.total} done</div>
+                                </div>
+                                <svg class="w-7 h-7 text-white transition-transform ${isExpanded ? 'rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="bg-gray-900 rounded-full h-3 overflow-hidden border border-gray-800">
+                            <div class="progress-bar bg-green-600 h-full" style="width: ${progress.percentage}%"></div>
+                        </div>
+                    </div>
+
+                    ${isExpanded ? `
+                        <div class="px-6 pb-6">
+                            <div class="space-y-3">
+                                ${questions.map((question, index) => {
+                                    const key = `${unit}-${index}`;
+                                    const isCompleted = completedQuestions[key];
+                                    return `
+                                        <div class="question-item rounded-xl p-4 border border-white/10 cursor-pointer" onclick="toggleQuestion('${unit}', ${index})">
+                                            <div class="flex items-start gap-4">
+                                                <div class="flex-shrink-0 mt-1">
+                                                    ${isCompleted ? `
+                                                        <div class="w-7 h-7 bg-green-600 rounded-full flex items-center justify-center border-2 border-green-500">
+                                                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                                            </svg>
+                                                        </div>
+                                                    ` : `
+                                                        <div class="w-7 h-7 bg-gray-800 rounded-full border-2 border-gray-700"></div>
+                                                    `}
+                                                </div>
+                                                <div class="flex-1">
+                                                    <div class="flex items-start justify-between gap-3">
+                                                        <p class="text-white text-sm leading-relaxed ${isCompleted ? 'line-through opacity-50' : ''}">${question}</p>
+                                                        <span class="flex-shrink-0 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Q${index + 1}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                `;
+
+                container.appendChild(unitCard);
+            });
+        }
+
+        loadProgress();
+        renderUnits();
+        updateMainProgress();
+
+        window.toggleQuestion = toggleQuestion;
+        window.toggleUnit = toggleUnit;
+    </script>
+</body>
+</html>

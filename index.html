@@ -60,7 +60,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
                     </svg>
                     <div id="totalPercentage" class="text-4xl font-bold text-green-600">0%</div>
-                    <div id="totalCount" class="text-sm text-gray-700 font-semibold mt-1">0/143</div>
+                    <div id="totalCount" class="text-sm text-gray-700 font-semibold mt-1">0/171</div>
                 </div>
             </div>
             
@@ -78,6 +78,36 @@
 
     <script>
         const units = {
+            'FINAL EXAM BLUEPRINT': [
+                'What is Data Science? What is Python? List and explain features of Python.',
+                'Explain the role of data types in Python programming. Illustrate your answer with examples of the list data type. Additionally, describe various methods used to add and remove elements from a list in Python.',
+                'What is a string in Python? Describe various string operations such as slicing, concatenation, and repetition with examples.',
+                'Write difference between list and tuple.',
+                'Define a tuple in Python. Provide examples to illustrate tuple creation and access. Also, explain the concept of immutability in tuples and its implications in Python programming.',
+                'Write a Python program that accepts a student\'s marks and prints: "Pass" if marks ≥ 40, "Fail" otherwise.',
+                'Write a Python program to find the union, intersection, and difference of two sets.',
+                'What is the difference between: discard() and remove() in sets, clear() and del with sets?',
+                'What is a dictionary in Python? Explain its key features and how it differs from other data types like lists and tuples. Provide examples to demonstrate dictionary creation, accessing values, updating entries, and deleting key-value pairs.',
+                'Write a Python program to count the frequency of characters in a string using a dictionary.',
+                'What is a function in Python? Explain the purpose and advantages of using functions in programming. Provide examples to demonstrate how to define and call a function, including the use of parameters and return values.',
+                'What are classes and objects in Python? Explain the concept of object-oriented programming with reference to classes and objects. Provide examples to demonstrate how to define a class, create objects, and access attributes and methods.',
+                'Explain in detail the concept of a Data Science Pipeline. Discuss each stage of the pipeline with suitable examples. Also, illustrate the pipeline with a neat diagram.',
+                'Explain applications of data science.',
+                'Explain data science and AI.',
+                'Explain Data Visualization. Explain Various Types of Plots.',
+                'What is Matplotlib? Explain box and pie plot.',
+                'Explain scatter plot with example.',
+                'Explain Histogram with example.',
+                'Explain the different measures of central tendency — mean, median, and mode — in detail. Describe how each measure is calculated, state their advantages and disadvantages, and illustrate your answer with a suitable example.',
+                'What is coefficient of correlation? How to find it with example.',
+                'What is data wrangling? Explain data wrangling process in detail.',
+                'Explain Exploratory Data Analysis (EDA). Explain its types and steps to perform it in detail.',
+                'What is a Contingency Table? Explain in detail.',
+                'Difference between Python & IPython.',
+                'What are magic functions in IPython? Illustrate their use with examples.',
+                'Write program on use of arithmetic operators and their magic functions.',
+                'How do data science, big data, and AI complement each other in modern analytics ecosystems?'
+            ],
             'Question Paper': [
                 'What are all dictionary methods?',
                 'What\'s Data Science Pipeline?',
@@ -303,9 +333,11 @@
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-4">
-                                <div class="${unit === 'Question Paper' ? 'bg-gradient-to-br from-red-500 to-red-700' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-gradient-to-br from-blue-500 to-blue-700' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-gradient-to-br from-yellow-500 to-yellow-700' : 'bg-gradient-to-br from-green-500 to-green-700'} p-3 rounded-2xl shadow-lg">
+                                <div class="${unit === 'FINAL EXAM BLUEPRINT' ? 'bg-gradient-to-br from-yellow-500 to-yellow-700' : unit === 'Question Paper' ? 'bg-gradient-to-br from-red-500 to-red-700' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-gradient-to-br from-blue-500 to-blue-700' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-gradient-to-br from-yellow-500 to-yellow-700' : 'bg-gradient-to-br from-green-500 to-green-700'} p-3 rounded-2xl shadow-lg">
                                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        ${unit === 'Question Paper' ? 
+                                        ${unit === 'FINAL EXAM BLUEPRINT' ?
+                                            '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>' :
+                                            unit === 'Question Paper' ? 
                                             '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>' :
                                             unit === 'SAME QUESTIONS (Common in Both)' ?
                                             '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>' :
@@ -316,17 +348,17 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h2 class="text-2xl font-bold ${unit === 'Question Paper' ? 'text-red-600' : unit === 'SAME QUESTIONS (Common in Both)' ? 'text-blue-600' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'text-yellow-700' : 'text-gray-900'}">${unit}</h2>
+                                    <h2 class="text-2xl font-bold ${unit === 'FINAL EXAM BLUEPRINT' ? 'text-yellow-600' : unit === 'Question Paper' ? 'text-red-600' : unit === 'SAME QUESTIONS (Common in Both)' ? 'text-blue-600' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'text-yellow-700' : 'text-gray-900'}">${unit}</h2>
                                     <p class="text-sm text-gray-600 font-medium mt-1">${questions.length} questions</p>
                                 </div>
                             </div>
                             <div class="text-right">
-                                <div class="text-3xl font-bold ${unit === 'Question Paper' ? 'text-red-600' : unit === 'SAME QUESTIONS (Common in Both)' ? 'text-blue-600' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'text-yellow-700' : 'text-green-600'}">${progress.percentage}%</div>
+                                <div class="text-3xl font-bold ${unit === 'FINAL EXAM BLUEPRINT' ? 'text-yellow-600' : unit === 'Question Paper' ? 'text-red-600' : unit === 'SAME QUESTIONS (Common in Both)' ? 'text-blue-600' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'text-yellow-700' : 'text-green-600'}">${progress.percentage}%</div>
                                 <div class="text-xs text-gray-600 font-semibold mt-1">${progress.completed}/${progress.total} done</div>
                             </div>
                         </div>
                         <div class="bg-gray-300 rounded-full h-4 overflow-hidden border-2 border-gray-400 mb-5 shadow-inner">
-                            <div class="progress-bar ${unit === 'Question Paper' ? 'bg-gradient-to-r from-red-500 to-red-600' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-gradient-to-r from-blue-500 to-blue-600' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-gradient-to-r from-yellow-500 to-yellow-600' : 'bg-gradient-to-r from-green-500 to-green-600'} h-full shadow-lg" style="width: ${progress.percentage}%"></div>
+                            <div class="progress-bar ${unit === 'FINAL EXAM BLUEPRINT' ? 'bg-gradient-to-r from-yellow-500 to-yellow-600' : unit === 'Question Paper' ? 'bg-gradient-to-r from-red-500 to-red-600' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-gradient-to-r from-blue-500 to-blue-600' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-gradient-to-r from-yellow-500 to-yellow-600' : 'bg-gradient-to-r from-green-500 to-green-600'} h-full shadow-lg" style="width: ${progress.percentage}%"></div>
                         </div>
 
                         <div class="space-y-3">
@@ -338,7 +370,7 @@
                                         <div class="flex items-start gap-4">
                                             <div class="flex-shrink-0 mt-1">
                                                 ${isCompleted ? `
-                                                    <div class="w-8 h-8 ${unit === 'Question Paper' ? 'bg-gradient-to-br from-red-500 to-red-600 border-red-400' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-gradient-to-br from-blue-500 to-blue-600 border-blue-400' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-gradient-to-br from-yellow-500 to-yellow-600 border-yellow-400' : 'bg-gradient-to-br from-green-500 to-green-600 border-green-400'} rounded-full flex items-center justify-center border-2 shadow-lg">
+                                                    <div class="w-8 h-8 ${unit === 'FINAL EXAM BLUEPRINT' ? 'bg-gradient-to-br from-yellow-500 to-yellow-600 border-yellow-400' : unit === 'Question Paper' ? 'bg-gradient-to-br from-red-500 to-red-600 border-red-400' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-gradient-to-br from-blue-500 to-blue-600 border-blue-400' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-gradient-to-br from-yellow-500 to-yellow-600 border-yellow-400' : 'bg-gradient-to-br from-green-500 to-green-600 border-green-400'} rounded-full flex items-center justify-center border-2 shadow-lg">
                                                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                                                         </svg>
@@ -350,7 +382,7 @@
                                             <div class="flex-1">
                                                 <div class="flex items-start justify-between gap-3">
                                                     <p class="text-gray-900 text-sm leading-relaxed font-medium ${isCompleted ? 'line-through opacity-50' : ''}">${question}</p>
-                                                    <span class="flex-shrink-0 ${unit === 'Question Paper' ? 'bg-gradient-to-br from-red-500 to-red-600' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-gradient-to-br from-blue-500 to-blue-600' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-gradient-to-br from-yellow-500 to-yellow-600' : 'bg-gradient-to-br from-green-500 to-green-600'} text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Q${index + 1}</span>
+                                                    <span class="flex-shrink-0 ${unit === 'FINAL EXAM BLUEPRINT' ? 'bg-gradient-to-br from-yellow-500 to-yellow-600' : unit === 'Question Paper' ? 'bg-gradient-to-br from-red-500 to-red-600' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-gradient-to-br from-blue-500 to-blue-600' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-gradient-to-br from-yellow-500 to-yellow-600' : 'bg-gradient-to-br from-green-500 to-green-600'} text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Q${index + 1}</span>
                                                 </div>
                                             </div>
                                         </div>

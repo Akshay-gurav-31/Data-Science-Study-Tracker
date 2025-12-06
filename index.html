@@ -10,62 +10,63 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .glass-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.3);
         }
         .glass-card-hover {
             transition: all 0.3s ease;
         }
         .glass-card-hover:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px 0 rgba(34, 197, 94, 0.2);
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.4);
         }
         .question-item {
             transition: all 0.2s ease;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(249, 250, 251, 0.9);
         }
         .question-item:hover {
-            background: rgba(34, 197, 94, 0.1);
-            border-color: rgba(34, 197, 94, 0.3);
-            transform: translateX(4px);
+            background: rgba(34, 197, 94, 0.08);
+            border-color: rgba(34, 197, 94, 0.4);
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
         .progress-bar {
             transition: width 0.5s ease;
         }
     </style>
 </head>
-<body class="bg-black min-h-screen p-4 md:p-8">
+<body class="bg-gradient-to-br from-gray-800 via-gray-900 to-black min-h-screen p-4 md:p-8">
     <div class="max-w-5xl mx-auto">
         <!-- Header -->
-        <div class="glass-card rounded-2xl p-8 mb-6">
+        <div class="glass-card rounded-3xl p-8 mb-6 shadow-2xl">
             <div class="flex items-center gap-6 mb-6 flex-wrap">
-                <div class="bg-green-600 p-4 rounded-xl shadow-xl">
+                <div class="bg-gradient-to-br from-green-500 to-green-700 p-4 rounded-2xl shadow-xl">
                     <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                     </svg>
                 </div>
                 <div class="flex-1">
-                    <h1 class="text-4xl font-bold text-white mb-2">
-                        Data<span class="text-green-500">Science</span> Exam Tracker
+                    <h1 class="text-5xl font-bold text-gray-900 mb-2">
+                        Data<span class="text-green-600">Science</span> Exam Tracker
                     </h1>
-                    <p class="text-gray-400 text-lg">Track your preparation progress chapter-wise</p>
+                    <p class="text-gray-700 text-lg font-medium">Track your preparation progress chapter-wise</p>
                 </div>
-                <div class="glass-card px-8 py-4 rounded-xl border-2 border-green-500/30">
-                    <svg class="w-8 h-8 text-green-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="glass-card px-8 py-4 rounded-2xl border-2 border-green-500/40 shadow-xl bg-gradient-to-br from-white to-green-50">
+                    <svg class="w-8 h-8 text-green-600 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
                     </svg>
-                    <div id="totalPercentage" class="text-3xl font-bold text-green-500">0%</div>
-                    <div id="totalCount" class="text-sm text-gray-300 mt-1">0/143</div>
+                    <div id="totalPercentage" class="text-4xl font-bold text-green-600">0%</div>
+                    <div id="totalCount" class="text-sm text-gray-700 font-semibold mt-1">0/143</div>
                 </div>
             </div>
             
             <!-- Progress Bar -->
-            <div class="bg-gray-900 rounded-full h-4 overflow-hidden border border-gray-800">
-                <div id="mainProgressBar" class="progress-bar bg-green-600 h-full flex items-center justify-end pr-3" style="width: 0%">
+            <div class="bg-gray-300 rounded-full h-5 overflow-hidden border-2 border-gray-400 shadow-inner">
+                <div id="mainProgressBar" class="progress-bar bg-gradient-to-r from-green-500 to-green-600 h-full flex items-center justify-end pr-3 shadow-lg" style="width: 0%">
                     <span id="mainProgressText" class="text-xs font-bold text-white hidden"></span>
                 </div>
             </div>
@@ -296,13 +297,13 @@
                 const progress = getUnitProgress(unit);
 
                 const unitCard = document.createElement('div');
-                unitCard.className = 'glass-card glass-card-hover rounded-2xl overflow-hidden';
+                unitCard.className = 'glass-card glass-card-hover rounded-3xl overflow-hidden shadow-xl';
 
                 unitCard.innerHTML = `
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-4">
-                                <div class="${unit === 'Question Paper' ? 'bg-red-600' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-blue-600' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-yellow-600' : 'bg-green-600'} p-3 rounded-xl">
+                                <div class="${unit === 'Question Paper' ? 'bg-gradient-to-br from-red-500 to-red-700' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-gradient-to-br from-blue-500 to-blue-700' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-gradient-to-br from-yellow-500 to-yellow-700' : 'bg-gradient-to-br from-green-500 to-green-700'} p-3 rounded-2xl shadow-lg">
                                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         ${unit === 'Question Paper' ? 
                                             '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>' :
@@ -315,17 +316,17 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h2 class="text-2xl font-bold ${unit === 'Question Paper' ? 'text-red-500' : unit === 'SAME QUESTIONS (Common in Both)' ? 'text-blue-500' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'text-yellow-500' : 'text-white'}">${unit}</h2>
-                                    <p class="text-sm text-gray-400 mt-1">${questions.length} questions</p>
+                                    <h2 class="text-2xl font-bold ${unit === 'Question Paper' ? 'text-red-600' : unit === 'SAME QUESTIONS (Common in Both)' ? 'text-blue-600' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'text-yellow-700' : 'text-gray-900'}">${unit}</h2>
+                                    <p class="text-sm text-gray-600 font-medium mt-1">${questions.length} questions</p>
                                 </div>
                             </div>
                             <div class="text-right">
-                                <div class="text-2xl font-bold ${unit === 'Question Paper' ? 'text-red-500' : unit === 'SAME QUESTIONS (Common in Both)' ? 'text-blue-500' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'text-yellow-500' : 'text-green-500'}">${progress.percentage}%</div>
-                                <div class="text-xs text-gray-400 mt-1">${progress.completed}/${progress.total} done</div>
+                                <div class="text-3xl font-bold ${unit === 'Question Paper' ? 'text-red-600' : unit === 'SAME QUESTIONS (Common in Both)' ? 'text-blue-600' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'text-yellow-700' : 'text-green-600'}">${progress.percentage}%</div>
+                                <div class="text-xs text-gray-600 font-semibold mt-1">${progress.completed}/${progress.total} done</div>
                             </div>
                         </div>
-                        <div class="bg-gray-900 rounded-full h-3 overflow-hidden border border-gray-800 mb-5">
-                            <div class="progress-bar ${unit === 'Question Paper' ? 'bg-red-600' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-blue-600' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-yellow-600' : 'bg-green-600'} h-full" style="width: ${progress.percentage}%"></div>
+                        <div class="bg-gray-300 rounded-full h-4 overflow-hidden border-2 border-gray-400 mb-5 shadow-inner">
+                            <div class="progress-bar ${unit === 'Question Paper' ? 'bg-gradient-to-r from-red-500 to-red-600' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-gradient-to-r from-blue-500 to-blue-600' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-gradient-to-r from-yellow-500 to-yellow-600' : 'bg-gradient-to-r from-green-500 to-green-600'} h-full shadow-lg" style="width: ${progress.percentage}%"></div>
                         </div>
 
                         <div class="space-y-3">
@@ -333,23 +334,23 @@
                                 const key = `${unit}-${index}`;
                                 const isCompleted = completedQuestions[key];
                                 return `
-                                    <div class="question-item rounded-xl p-4 border border-white/10 cursor-pointer" onclick="toggleQuestion('${unit}', ${index})">
+                                    <div class="question-item rounded-xl p-4 border-2 border-gray-200 cursor-pointer shadow-md hover:shadow-lg" onclick="toggleQuestion('${unit}', ${index})">
                                         <div class="flex items-start gap-4">
                                             <div class="flex-shrink-0 mt-1">
                                                 ${isCompleted ? `
-                                                    <div class="w-7 h-7 ${unit === 'Question Paper' ? 'bg-red-600 border-red-500' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-blue-600 border-blue-500' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-yellow-600 border-yellow-500' : 'bg-green-600 border-green-500'} rounded-full flex items-center justify-center border-2">
+                                                    <div class="w-8 h-8 ${unit === 'Question Paper' ? 'bg-gradient-to-br from-red-500 to-red-600 border-red-400' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-gradient-to-br from-blue-500 to-blue-600 border-blue-400' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-gradient-to-br from-yellow-500 to-yellow-600 border-yellow-400' : 'bg-gradient-to-br from-green-500 to-green-600 border-green-400'} rounded-full flex items-center justify-center border-2 shadow-lg">
                                                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                                                         </svg>
                                                     </div>
                                                 ` : `
-                                                    <div class="w-7 h-7 bg-gray-800 rounded-full border-2 border-gray-700"></div>
+                                                    <div class="w-8 h-8 bg-gray-200 rounded-full border-2 border-gray-400"></div>
                                                 `}
                                             </div>
                                             <div class="flex-1">
                                                 <div class="flex items-start justify-between gap-3">
-                                                    <p class="text-white text-sm leading-relaxed ${isCompleted ? 'line-through opacity-50' : ''}">${question}</p>
-                                                    <span class="flex-shrink-0 ${unit === 'Question Paper' ? 'bg-red-600' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-blue-600' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-yellow-600' : 'bg-green-600'} text-white text-xs font-bold px-3 py-1 rounded-full">Q${index + 1}</span>
+                                                    <p class="text-gray-900 text-sm leading-relaxed font-medium ${isCompleted ? 'line-through opacity-50' : ''}">${question}</p>
+                                                    <span class="flex-shrink-0 ${unit === 'Question Paper' ? 'bg-gradient-to-br from-red-500 to-red-600' : unit === 'SAME QUESTIONS (Common in Both)' ? 'bg-gradient-to-br from-blue-500 to-blue-600' : unit === 'NOT SAME QUESTIONS (Only in Units)' ? 'bg-gradient-to-br from-yellow-500 to-yellow-600' : 'bg-gradient-to-br from-green-500 to-green-600'} text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">Q${index + 1}</span>
                                                 </div>
                                             </div>
                                         </div>

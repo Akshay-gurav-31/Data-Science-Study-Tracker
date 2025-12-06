@@ -59,7 +59,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
                     </svg>
                     <div id="totalPercentage" class="text-3xl font-bold text-green-500">0%</div>
-                    <div id="totalCount" class="text-sm text-gray-300 mt-1">0/45</div>
+                    <div id="totalCount" class="text-sm text-gray-300 mt-1">0/42</div>
                 </div>
             </div>
             
@@ -92,13 +92,10 @@
                 'What are classes and objects in Python? Explain the concept of object-oriented programming with reference to classes and objects. Provide examples to demonstrate how to define a class, create objects, and access attributes and methods.'
             ],
             'Unit 2': [
-                'List & explain Core com Core Competencies(skill) of a Data Scientist.',
-                'How data science, big data, and AI are interrelated in modern technology ecosystems?',
-                'Explain data science pipeline.',
-                'Methods in Python.',
-                'What are Attribute Access Methods in Python? Explain their purpose with examples.',
-                'What is kernel? Types of kernel. Why is restarting a kernel sometimes necessary?',
-                'How do you load a built-in dataset in Seaborn? Give example.'
+                'Explain in detail the concept of a Data Science Pipeline. Discuss each stage of the pipeline with suitable examples. Also, illustrate the pipeline with a neat diagram.',
+                'Explain the core competencies required to become a successful data scientist. Support your answer with examples of how these skills are applied in real-world data science projects',
+                'How do data science, big data, and AI complement each other in modern analytics ecosystems?',
+                'How does programming enhance the efficiency of data analysis compared to manual methods?'
             ],
             'Unit 3': [
                 'Difference between python & Ipython',
@@ -107,7 +104,10 @@
                 'What is IPython? List and explain the main features of IPython in detail.',
                 'Write short note on: Magic command in IPython, jupyter notebook, Restoring A Checkpoint',
                 'What are magic methods in Python? How do they relate to operator overloading?',
-                'Explain how comparison operators are implemented using magic'
+                'Explain how comparison operators are implemented using magic methods in Python.',
+                'What are Attribute Access Methods in Python? Explain their purpose with examples.',
+                'What is kernel? Types of kernel. Why is restarting a kernel sometimes necessary?',
+                'How do you load a built-in dataset in Seaborn? Give example.'
             ],
             'Unit 4': [
                 'What is data visualization? Explain its importance in data analysis.',
@@ -134,7 +134,6 @@
         };
 
         let completedQuestions = {};
-        let expandedUnits = { 'Unit 1': true };
 
         function loadProgress() {
             const saved = localStorage.getItem('dsTrackerProgress');
@@ -183,24 +182,18 @@
             updateMainProgress();
         }
 
-        function toggleUnit(unit) {
-            expandedUnits[unit] = !expandedUnits[unit];
-            renderUnits();
-        }
-
         function renderUnits() {
             const container = document.getElementById('unitsContainer');
             container.innerHTML = '';
 
             Object.entries(units).forEach(([unit, questions]) => {
                 const progress = getUnitProgress(unit);
-                const isExpanded = expandedUnits[unit];
 
                 const unitCard = document.createElement('div');
                 unitCard.className = 'glass-card glass-card-hover rounded-2xl overflow-hidden';
 
                 unitCard.innerHTML = `
-                    <div class="p-6 cursor-pointer" onclick="toggleUnit('${unit}')">
+                    <div class="p-6">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-4">
                                 <div class="bg-green-600 p-3 rounded-xl">
@@ -213,54 +206,45 @@
                                     <p class="text-sm text-gray-400 mt-1">${questions.length} questions</p>
                                 </div>
                             </div>
-                            <div class="flex items-center gap-4">
-                                <div class="text-right">
-                                    <div class="text-2xl font-bold text-green-500">${progress.percentage}%</div>
-                                    <div class="text-xs text-gray-400 mt-1">${progress.completed}/${progress.total} done</div>
-                                </div>
-                                <svg class="w-7 h-7 text-white transition-transform ${isExpanded ? 'rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                </svg>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-green-500">${progress.percentage}%</div>
+                                <div class="text-xs text-gray-400 mt-1">${progress.completed}/${progress.total} done</div>
                             </div>
                         </div>
-                        <div class="bg-gray-900 rounded-full h-3 overflow-hidden border border-gray-800">
+                        <div class="bg-gray-900 rounded-full h-3 overflow-hidden border border-gray-800 mb-5">
                             <div class="progress-bar bg-green-600 h-full" style="width: ${progress.percentage}%"></div>
                         </div>
-                    </div>
 
-                    ${isExpanded ? `
-                        <div class="px-6 pb-6">
-                            <div class="space-y-3">
-                                ${questions.map((question, index) => {
-                                    const key = `${unit}-${index}`;
-                                    const isCompleted = completedQuestions[key];
-                                    return `
-                                        <div class="question-item rounded-xl p-4 border border-white/10 cursor-pointer" onclick="toggleQuestion('${unit}', ${index})">
-                                            <div class="flex items-start gap-4">
-                                                <div class="flex-shrink-0 mt-1">
-                                                    ${isCompleted ? `
-                                                        <div class="w-7 h-7 bg-green-600 rounded-full flex items-center justify-center border-2 border-green-500">
-                                                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-                                                            </svg>
-                                                        </div>
-                                                    ` : `
-                                                        <div class="w-7 h-7 bg-gray-800 rounded-full border-2 border-gray-700"></div>
-                                                    `}
-                                                </div>
-                                                <div class="flex-1">
-                                                    <div class="flex items-start justify-between gap-3">
-                                                        <p class="text-white text-sm leading-relaxed ${isCompleted ? 'line-through opacity-50' : ''}">${question}</p>
-                                                        <span class="flex-shrink-0 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Q${index + 1}</span>
+                        <div class="space-y-3">
+                            ${questions.map((question, index) => {
+                                const key = `${unit}-${index}`;
+                                const isCompleted = completedQuestions[key];
+                                return `
+                                    <div class="question-item rounded-xl p-4 border border-white/10 cursor-pointer" onclick="toggleQuestion('${unit}', ${index})">
+                                        <div class="flex items-start gap-4">
+                                            <div class="flex-shrink-0 mt-1">
+                                                ${isCompleted ? `
+                                                    <div class="w-7 h-7 bg-green-600 rounded-full flex items-center justify-center border-2 border-green-500">
+                                                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                                        </svg>
                                                     </div>
+                                                ` : `
+                                                    <div class="w-7 h-7 bg-gray-800 rounded-full border-2 border-gray-700"></div>
+                                                `}
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="flex items-start justify-between gap-3">
+                                                    <p class="text-white text-sm leading-relaxed ${isCompleted ? 'line-through opacity-50' : ''}">${question}</p>
+                                                    <span class="flex-shrink-0 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Q${index + 1}</span>
                                                 </div>
                                             </div>
                                         </div>
-                                    `;
-                                }).join('')}
-                            </div>
+                                    </div>
+                                `;
+                            }).join('')}
                         </div>
-                    ` : ''}
+                    </div>
                 `;
 
                 container.appendChild(unitCard);
@@ -272,7 +256,6 @@
         updateMainProgress();
 
         window.toggleQuestion = toggleQuestion;
-        window.toggleUnit = toggleUnit;
     </script>
 </body>
 </html>
